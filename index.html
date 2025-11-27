@@ -1,179 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>For VANI ❤️</title>
+  <meta charset="UTF-8">
+  <title>Birthday Surprise</title>
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI';
+      padding: 0;
+      height: 100vh;
       background: black;
       overflow: hidden;
+      font-family: Arial, sans-serif;
       color: white;
       text-align: center;
     }
 
-    /* HEART BACKGROUND */
-    .heart-bg {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.imgur.com/3ZQ3ZzD.png');
-      animation: moveHearts 30s linear infinite;
-      opacity: 0.3;
-    }
-    @keyframes moveHearts {
-      0% {background-position: 0 0;}
-      100% {background-position: 0 -1000px;}
+    h1 {
+      margin-top: 20px;
+      font-size: 3em;
+      color: pink;
     }
 
-    /* PASSWORD PAGE */
-    #lockScreen {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      background: linear-gradient(45deg, black, darkred);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    input {
-      padding: 12px;
-      font-size: 20px;
-      border-radius: 10px;
-      border: none;
-      text-align: center;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 25px;
-      font-size: 18px;
-      border-radius: 10px;
-      background: pink;
-      border: none;
+    .cake {
+      font-size: 150px;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      margin-top: 30px;
     }
 
-    /* SHINING NAME */
-    .shining {
-      font-size: 50px;
-      font-weight: bold;
-      animation: shine 2s infinite alternate;
-    }
-    @keyframes shine {
-      from {text-shadow: 0 0 10px pink;}
-      to {text-shadow: 0 0 30px red;}
+    .gift {
+      font-size: 120px;
+      cursor: pointer;
+      display: none;
+      animation: shake 1s infinite;
     }
 
-    /* TYPEWRITER */
-    .typewriter {
-      font-size: 28px;
-      border-right: 2px solid pink;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 6s steps(50, end) forwards;
-    }
-    @keyframes typing {
-      from { width: 0;}
-      to { width: 100%;}
+    .message {
+      display: none;
+      font-size: 2.2em;
+      color: yellow;
+      margin-top: 20px;
+      animation: glow 1s infinite alternate;
     }
 
-    /* ROSE PETALS */
-    .petal {
-      position: fixed;
-      top: -50px;
-      font-size: 20px;
-      color: red;
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
+    @keyframes bounce {
+      0%, 50%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-20px); }
+      75% { transform: translateY(-10px); }
     }
 
-    /* KISS ANIMATION */
-    .kiss {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 50px;
-      animation: float 2s infinite alternate;
-    }
-    @keyframes float {
-      from {transform: translateY(0);}
-      to {transform: translateY(-20px);}
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
     }
 
-    /* PHOTO GALLERY */
-    img {
-      width: 200px;
-      margin: 10px;
-      border-radius: 15px;
-      border: 2px solid pink;
+    @keyframes glow {
+      from { text-shadow: 0 0 10px pink; }
+      to { text-shadow: 0 0 20px red; }
     }
   </style>
 </head>
-
 <body>
 
-<div class="heart-bg"></div>
+  <h1>Tap the Cake 🎂</h1>
 
-<!-- PASSWORD SCREEN -->
-<div id="lockScreen">
-  <h2>🔒 Enter Secret Password</h2>
-  <input type="password" id="pass">
-  <button onclick="unlock()">Unlock ❤️</button>
-  <p id="msg"></p>
-</div>
+  <div class="cake" onclick="showGift()">🎂</div>
 
-<!-- MUSIC -->
-<audio id="song" loop>
-  <source src="music.mp3" type="audio/mp3">
-</audio>
+  <div class="gift" id="gift" onclick="openGift()">🎁</div>
 
-<br><br>
-<div class="shining">VANI ❤️</div>
+  <div class="message" id="msg">
+    🎉 Happy Birthday VANI 🎉<br>
+    You are my favorite surprise ❤️
+  </div>
 
-<br>
-<div class="typewriter">Happy Birthday My Love 💖 You are my forever 🥰</div>
-
-<br><br>
-<!-- PHOTOS -->
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<img src="photo4.jpg">
-
-<!-- KISS -->
-<div class="kiss">💋</div>
-
-<script>
-  // PASSWORD
-  function unlock() {
-    let p = document.getElementById("pass").value;
-    if(p === "vani123") {
-      document.getElementById("lockScreen").style.display = "none";
-      document.getElementById("song").play();
-      createPetals();
-    } else {
-      document.getElementById("msg").innerText = "Wrong password 💔";
+  <script>
+    function showGift() {
+      document.querySelector('.cake').style.display = 'none';
+      document.getElementById('gift').style.display = 'block';
     }
-  }
 
-  // ROSE PETALS
-  function createPetals() {
-    for(let i=0;i<30;i++) {
-      let petal = document.createElement("div");
-      petal.className = "petal";
-      petal.innerHTML = "🌹";
-      petal.style.left = Math.random()*100 + "vw";
-      petal.style.animationDuration = (Math.random()*3 + 3) + "s";
-      document.body.appendChild(petal);
+    function openGift() {
+      document.getElementById('gift').style.display = 'none';
+      document.getElementById('msg').style.display = 'block';
     }
-  }
-</script>
+  </script>
 
 </body>
 </html>
