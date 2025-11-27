@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday VANI ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      text-align: center;
+      color: white;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8em;
+      animation: zoom 1s infinite alternate;
+    }
+    @keyframes zoom {
+      from {transform: scale(1);}
+      to {transform: scale(1.05);}
+    }
+    img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    .letter {
+      background: rgba(255,255,255,0.15);
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 25px;
+      font-size: 18px;
+      display: none;
+    }
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+      color: red;
+    }
+    @keyframes float {
+      from {bottom:-10px; opacity:1;}
+      to {bottom:100%; opacity:0;}
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎂 Happy Birthday VANI ❤️ 🎂</h1>
+
+<!-- Countdown Timer -->
+<h2 id="countdown"></h2>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="Dil Tu Jaan Tu - Gurnazar.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Photos -->
+<img src="child1.jpg">
+<img src="child2.jpg">
+<img src="adult1.jpg">
+<img src="adult2.jpg">
+
+<!-- Love Letter Button -->
+<br><br>
+<button onclick="showLetter()" style="padding:12px 25px;border-radius:15px;border:none;font-size:16px;">
+  💌 Open Hidden Love Letter
+</button>
+
+<div class="letter" id="letter">
+  <p>
+    My dear VANI ❤️<br><br>
+    From childhood till today, you look more beautiful every day.  
+    You are not just my love, you are my best friend, my happiness, my smile, my heart.  
+    I feel lucky to have you in my life.  
+    I promise to always stand by you, care for you and love you forever. 💕<br><br>
+    Happy Birthday my special one 🎂💝
+  </p>
+</div>
+
+<script>
+  // Show love letter
+  function showLetter() {
+    document.getElementById("letter").style.display = "block";
+  }
+
+  // Floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 300);
+
+  // Countdown Timer (CHANGE DATE)
+  const birthday = new Date("2025-12-05 00:00:00").getTime(); // change to her birthday
+  setInterval(function() {
+    const now = new Date().getTime();
+    const diff = birthday - now;
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((diff % (1000*60*60))/(1000*60));
+    const s = Math.floor((diff % (1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+      d + " Days " + h + " Hours " + m + " Minutes " + s + " Seconds Left 💖";
+  }, 1000);
+</script>
+
+</body>
+</html>
